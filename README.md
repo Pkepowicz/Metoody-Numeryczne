@@ -1,1 +1,1 @@
-# Metoody Numeryczne
+# Numerical-Methods
