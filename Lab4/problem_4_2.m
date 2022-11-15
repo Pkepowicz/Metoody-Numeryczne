@@ -7,7 +7,7 @@ A = [4 12 -16;
 U = chol(A),
 [U, L] = myLu(A),
 
-function [L,U] = myLu(A) %dekompozycja cholskiego
+function [L,U] = myLu(A) %dekompozycja choleskiego
 [N,N] = size(A);
    L = eye(N);
    for j=1:N
