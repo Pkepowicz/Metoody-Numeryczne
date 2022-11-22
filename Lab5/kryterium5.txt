@@ -1,0 +1,5 @@
+sposób	| średnia bezwzględna	| średnia względna	| średnia bezwzględna rotacji	|	średnia względna rotacji 
+Nearest 	|     5.0388		|      -0.1081		|     8.8682			|	      -0.1903
+Bilinear	|    	3.3892		|      -0.0572		|     5.9980			| 		-0.1012
+Bicubic	|     3.2375		|  	 -0.0560		|     5.9566			|	      -0.1029
+Spline	| 	3.2050		|	 -0.0568		|     5.5753			|		-0.0989

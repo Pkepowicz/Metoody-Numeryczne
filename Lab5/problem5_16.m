@@ -9,7 +9,7 @@ Missing_X = X(2:2:120,:);                                           %Macierz zaw
 xvar = min(x) : (max(x)-min(x))/200 : max(x); % zmiennosc x
 yvar = min(y) : (max(y)-min(y))/200 : max(y); % zmiennosc y
 [Xi,Yi] = meshgrid( xvar, yvar );                                   % siatka interpolacji xi, yi
-out = griddata( x, y, z, Xi,Yi, 'nearest' );                          % interp: nearest, linear, spline (v4), cubic
+out = griddata( x, y, z, Xi,Yi, 'natural' );                          % interp: nearest, linear, natural, spline (v4), cubic
 figure; surf( out, LineStyle=":", LineWidth=0.1 ); pause  % rysunek
 half_x_var = min(half_x) : (max(half_x)-min(half_x))/200 : max(half_x); % Wychodzi na to samo co xvar
 half_y_var = min(half_y) : (max(half_y)-min(half_y))/200 : max(half_y); % Wychodzi na to samo co yvar
@@ -17,10 +17,11 @@ half_y_var = min(half_y) : (max(half_y)-min(half_y))/200 : max(half_y); % Wychod
 figure; grid; plot3( half_x, half_y, half_z, 'b.' ); pause
 
 %Interpolacja ======================================================
-half_out = griddata(half_x, half_y, half_z, half_Xi, half_Yi, 'nearest');
+half_out = griddata(half_x, half_y, half_z, half_Xi, half_Yi, 'natural');
 figure; surf( half_out, LineStyle=":", LineWidth=0.1 );
 %Sumowanie wartości błędów bezwzględnych.=================================
 l_err_abs_sum = 0;
+pa=0;
 [M,N] = size(Missing_X);
 rounded_xvar = round(xvar,4); % Zaokrąglam, ponieważ dla funkcji find 5.14999998 != 5.15
 rounded_yvar = round(yvar,4);
@@ -28,13 +29,16 @@ for i = 1:M
    x_var_index = find(rounded_xvar == Missing_X(i,1));
    y_var_index = find(rounded_yvar == Missing_X(i,2));
    l_err_abs_sum = l_err_abs_sum + abs(half_out(y_var_index,x_var_index)-out(y_var_index,x_var_index));
+   pa=pa+1;
 end
-l_err_abs_sum,
+l_err_abs_sum/pa,
 %Sumowanie błędó =================================
 l_err_sum = 0;
+pe=0;
 for i = 1:M
    x_var_index = find(rounded_xvar == Missing_X(i,1));
    y_var_index = find(rounded_yvar == Missing_X(i,2));
    l_err_sum = l_err_sum + (half_out(y_var_index,x_var_index)-out(y_var_index,x_var_index));
+   pe=pe+1;
 end
-l_err_sum,
+l_err_sum/pe,

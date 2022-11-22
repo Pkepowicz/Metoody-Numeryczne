@@ -1,0 +1,5 @@
+sposób	| średnia bezwzględna	| średnia względna	
+Near		|	  111.6167		|	-10.4833
+Linear	|	  40.9917		|	-13.7250
+Natural	|	  39.9854		|	-13.4958
+Spline (v4)	|	  37.7756		|	-5.8771
